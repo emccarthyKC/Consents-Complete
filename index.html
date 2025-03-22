@@ -9,11 +9,11 @@
     }
 
     window.onload = function () {
-      const backgroundCheck = getQueryParam('backgroundCheck');
+      const dateEnd = getQueryParam('dateEnd');
       const warningBox = document.getElementById('warning');
       const okBox = document.getElementById('ok');
 
-      if (!backgroundCheck || backgroundCheck.toLowerCase() === 'null') {
+      if (!dateEnd || dateEnd.toLowerCase() === 'null') {
         warningBox.style.display = 'block';
       } else {
         okBox.style.display = 'block';
@@ -23,13 +23,13 @@
 </head>
 <body style="font-family: sans-serif; margin: 30px;">
   <div id="warning" style="display:none; background-color:#fff3f3; padding:20px; border-left:6px solid red;">
-    <h2 style="color:red;">⚠️ Missing Consent-Do Not Order Medicals</h2>
-    <p><strong>Action Required:</strong> Candidate has not completed consent.<code>Consent</code> (customDate10) </p>
+    <h2 style="color:red;">⚠️ Missing Consent - Do Not Order Medicals</h2>
+    <p><strong>Action Required:</strong> Candidate has not completed consent. <code>Consent (dateEnd)</code> is missing.</p>
   </div>
 
   <div id="ok" style="display:none; background-color:#f3fff3; padding:20px; border-left:6px solid green;">
     <h2 style="color:green;">✅ Consents Complete!</h2>
-    <p>customDate10 is filled in — no action needed!</p>
+    <p><code>dateEnd</code> is filled in — no action needed!</p>
   </div>
 </body>
 </html>
