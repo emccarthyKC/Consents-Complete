@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Missing Consent Alert</title>
+  <title>Consent Status</title>
+  <script>
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    window.onload = function () {
+      const backgroundCheck = getQueryParam('backgroundCheck');
+      const warningBox = document.getElementById('warning');
+      const okBox = document.getElementById('ok');
+
+      if (!backgroundCheck || backgroundCheck.toLowerCase() === 'null') {
+        warningBox.style.display = 'block';
+      } else {
+        okBox.style.display = 'block';
+      }
+    };
+  </script>
 </head>
-<body style="font-family: sans-serif; background-color: #fff3f3;">
-  <h2 style="color:red;">⚠️ Required Consent Missing</h2>
-  <p>Consents must be complete before scheduling Medicals.</p>
+<body style="font-family: sans-serif; margin: 30px;">
+  <div id="warning" style="display:none; background-color:#fff3f3; padding:20px; border-left:6px solid red;">
+    <h2 style="color:red;">⚠️ Missing Consent-Do Not Order Medicals</h2>
+    <p><strong>Action Required:</strong> Please complete the <code>Background Check Date</code> (customDate10) field on the Placement record.</p>
+  </div>
+
+  <div id="ok" style="display:none; background-color:#f3fff3; padding:20px; border-left:6px solid green;">
+    <h2 style="color:green;">✅ Consents Complete!</h2>
+    <p>customDate10 is filled in — no action needed!</p>
+  </div>
 </body>
 </html>
